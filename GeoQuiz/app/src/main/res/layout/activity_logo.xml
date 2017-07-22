@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:drawablePadding="5dp"
         android:drawableRight="@drawable/arrow_right"
+        android:onClick="onClick"
         android:text="@string/next_button" />
 
 </LinearLayout>

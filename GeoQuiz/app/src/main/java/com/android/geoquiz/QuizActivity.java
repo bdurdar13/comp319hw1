@@ -9,20 +9,17 @@ import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private Button mTrueButton;
-    private Button mFalseButton;
+    private Question mQuestion = new Question();
+    private Button mAButton;
+    private Button mBButton;
+    private Button mCButton;
+    private Button mDButton;
     private Button mNextButton;
     private TextView mQuestionTextView;
+    private TextView mScoreView;
 
-    private Question[] mQuestionBank = new Question[] {
-            new Question(R.string.question_australia, true),
-            new Question(R.string.question_oceans, true),
-            new Question(R.string.question_mideast, false),
-            new Question(R.string.question_africa, false),
-            new Question(R.string.question_americas, true),
-            new Question(R.string.question_asia, true),
-    };
-
+    private String mAnswer;
+    private int mScore = 0;
     private int mCurrentIndex = 0;
 
     @Override
@@ -30,53 +27,107 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+
+        // mScoreView =(TextView) findViewById(R.id.score);
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
 
-        mTrueButton = (Button) findViewById(R.id.true_button);
-        mTrueButton.setOnClickListener(new View.OnClickListener() {
+
+        mAButton = (Button) findViewById(R.id.a_button);
+        mAButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAnswer(true);
+                if (mAButton.getText() == mAnswer) {
+                    mScore = mScore + 100;
+                    updateScore();
+                    Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    mScore = mScore - 20;
+                    Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
+                            .show();
+                }
             }
         });
 
-        mFalseButton = (Button) findViewById(R.id.false_button);
-        mFalseButton.setOnClickListener(new View.OnClickListener() {
+
+        mBButton = (Button) findViewById(R.id.b_button);
+        mBButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAnswer(false);
+                if (mBButton.getText() == mAnswer) {
+                    mScore = mScore + 100;
+                    //  updateScore(mScore);
+                    Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    mScore = mScore - 20;
+                    Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
+                            .show();
+                }
             }
         });
+
+
+        mCButton = (Button) findViewById(R.id.c_button);
+        mCButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCButton.getText() == mAnswer) {
+                    mScore = mScore + 100;
+                    //  updateScore(mScore);
+                    Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    mScore = mScore - 20;
+                    Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+        });
+
+        mDButton = (Button) findViewById(R.id.d_button);
+        mDButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mDButton.getText() == mAnswer) {
+                    mScore = mScore + 100;
+                    //  updateScore(mScore);
+                    Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    mScore = mScore - 20;
+                    Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+        });
+
 
         mNextButton = (Button) findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+           @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                updateQuestion();
-            }
+               updateQuestion();
+
+           }
         });
-
-        updateQuestion();
     }
 
+    private void updateScore(){
+        mScoreView.setText("" + mScore);
+
+
+    }
     private void updateQuestion() {
-        int question = mQuestionBank[mCurrentIndex].getTextResId();
-        mQuestionTextView.setText(question);
+        mQuestionTextView.setText(mQuestion.getQuestions(mCurrentIndex));
+        mAButton.setText(mQuestion.getChoicea(mCurrentIndex));
+        mBButton.setText(mQuestion.getChoiceb(mCurrentIndex));
+        mCButton.setText(mQuestion.getChoicec(mCurrentIndex));
+        mDButton.setText(mQuestion.getChoiced(mCurrentIndex));
+
+        mAnswer = mQuestion.getTrueAnswer(mCurrentIndex);
+        mCurrentIndex++;
+
     }
 
-    private void checkAnswer(boolean userPressedTrue) {
-        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
-
-        int messageResId = 0;
-
-        if (userPressedTrue == answerIsTrue) {
-            messageResId = R.string.correct_toast;
-        } else {
-            messageResId = R.string.incorrect_toast;
-        }
-
-        Toast.makeText(this, messageResId, Toast.LENGTH_LONG)
-                .show();
-    }
 }
