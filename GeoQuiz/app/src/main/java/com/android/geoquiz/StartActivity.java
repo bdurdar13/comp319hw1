@@ -13,22 +13,21 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        int count = 0;
 
         ImageButton startButton = (ImageButton) findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+
                 Intent startInt = new Intent(StartActivity.this, QuizActivity.class);
                 startActivity(startInt);
-
-
-
             }
-
         });
     }
+
+
 }
 
 

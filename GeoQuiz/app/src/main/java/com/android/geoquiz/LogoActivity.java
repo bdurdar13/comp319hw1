@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class LogoActivity extends AppCompatActivity {
 
     String mUserName;
     private EditText mUserView;
-    private TextView mUserTextView;
 
     private Button nextButton;
 
@@ -23,7 +21,6 @@ public class LogoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logo);
 
         mUserView =(EditText) findViewById(R.id.userText);
-        mUserTextView =(TextView) findViewById(R.id.userTextView);
 
         nextButton = (Button) findViewById(R.id.next_button);
 

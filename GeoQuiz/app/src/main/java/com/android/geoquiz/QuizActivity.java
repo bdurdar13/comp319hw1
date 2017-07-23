@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Handler;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -21,8 +20,6 @@ public class QuizActivity extends AppCompatActivity {
     private TextView mScoreView;
     private TextView mTimerView;
     public int counter = 1000;
-    private boolean running;
-    private boolean isRunning;
 
 
 
@@ -72,16 +69,7 @@ public class QuizActivity extends AppCompatActivity {
             };
            t.start();
 
-        if(savedInstanceState !=null) {
-            mScoreView =(TextView) savedInstanceState.getCharSequence("mScoreView");
-            mQuestionTextView = (TextView) savedInstanceState.getCharSequence("mQuestionTextView");
-            mTimerView = (TextView) savedInstanceState.getCharSequence("mTimerView");
-            running = savedInstanceState.getBoolean("running");
-            isRunning = savedInstanceState.getBoolean("isRunning");
-        }
-        if(isRunning){
-            running = true;
-        }
+
 
         mAButton = (Button) findViewById(R.id.a_button);
         mAButton.setOnClickListener(new View.OnClickListener() {
@@ -285,40 +273,6 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
-    public void onClickStart(View view){
-        running = true;
-    }
-
-    public void onClickStop(View view){
-        running = false;
-    }
-
-    public void onClickReset(View view){
-        running = false;
-        counter = 1000;
-    }
-
-
-    public void onClickPause(View view){
-        running = false;
-        counter = this.counter;
-    }
-
-    public void onClickRestart(View view){
-        running = true;
-        mQuestionTextView = (TextView) this.mQuestionTextView;
-        mTimerView = (TextView ) this.mTimerView;
-        mScoreView = (TextView) this.mScoreView;
-    }
-
-    public void onClickResume(View view){
-        running = true;
-        counter = this.counter;
-        mQuestionTextView = (TextView) this.mQuestionTextView;
-        mTimerView = (TextView ) this.mTimerView;
-        mScoreView = (TextView) this.mScoreView;
-    }
-
 
     private void updateQuestion() {
 
@@ -331,49 +285,6 @@ public class QuizActivity extends AppCompatActivity {
         mAnswer = mQuestion.getTrueAnswer(mCurrentIndex);
         mCurrentIndex++;
 
-
-    }
-
-    protected void onSaveInstanceState(Bundle savedInstanceState){
-        savedInstanceState.putInt("counter", counter);
-        savedInstanceState.putBoolean("running", running);
-        savedInstanceState.putBoolean("isRunning", isRunning);
-
-    }
-
-    protected void onStop(){
-        super.onStop();
-        isRunning = running;
-        running = false;
-
-    }
-
-    protected void onStart(){
-        super.onStart();
-        if(isRunning){
-            running = true;
-        }
-
-    }
-
-    protected void onReset(){
-        super.onReset();
-        isRunning = running;
-        running = false;
-
-    }
-
-    protected void onPause(){
-        super.onPause();
-        isRunning = running;
-        running = false;
-
-    }
-
-    protected void onRestart(){
-        super.onRestart();
-        isRunning = running;
-        running = true;
 
     }
 
