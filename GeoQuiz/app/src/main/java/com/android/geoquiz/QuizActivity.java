@@ -369,13 +369,13 @@ public class QuizActivity extends AppCompatActivity {
         }
 
     }
-
+/*
     protected void onReset(){
         super.onReset();
         isRunning = running;
         running = false;
     }
-
+*/
     protected void onPause(){
         super.onPause();
         isRunning = running;
