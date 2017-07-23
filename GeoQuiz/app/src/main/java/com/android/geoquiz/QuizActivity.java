@@ -80,8 +80,16 @@ public class QuizActivity extends AppCompatActivity {
                     updateScore();
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
-                    updateQuestion();
-                    counter=100;
+                    if (mCurrentIndex < 10) {
+
+                        updateQuestion();
+                        counter=100;
+                    } else {
+                        Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        quizInt.putExtra("Score", mScore);
+                        startActivity(quizInt);
+
+                    }
 
 
 
@@ -90,8 +98,16 @@ public class QuizActivity extends AppCompatActivity {
                     Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateScore();
-                    updateQuestion();
-                    counter=100;
+                    if (mCurrentIndex < 10) {
+
+                        updateQuestion();
+                        counter=100;
+                    } else {
+                        Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        quizInt.putExtra("Score", mScore);
+                        startActivity(quizInt);
+
+                    }
 
 
 
@@ -110,8 +126,16 @@ public class QuizActivity extends AppCompatActivity {
                     updateScore();
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
-                    updateQuestion();
-                    counter=100;
+                    if (mCurrentIndex < 10) {
+
+                        updateQuestion();
+                        counter=100;
+                    } else {
+                        Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        quizInt.putExtra("Score", mScore);
+                        startActivity(quizInt);
+
+                    }
 
 
                 } else {
@@ -119,11 +143,17 @@ public class QuizActivity extends AppCompatActivity {
                     Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateScore();
-                    updateQuestion();
-                    counter=100;
+                    if (mCurrentIndex < 10) {
 
+                        updateQuestion();
+                        counter=100;
+                    } else {
+                        Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        quizInt.putExtra("Score", mScore);
+                        startActivity(quizInt);
 
-
+                    }
+                    
 
                 }
             }
@@ -139,8 +169,16 @@ public class QuizActivity extends AppCompatActivity {
                     updateScore();
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
-                    updateQuestion();
-                    counter=100;
+                    if (mCurrentIndex < 10) {
+
+                        updateQuestion();
+                        counter=100;
+                    } else {
+                        Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        quizInt.putExtra("Score", mScore);
+                        startActivity(quizInt);
+
+                    }
 
 
 
@@ -149,9 +187,16 @@ public class QuizActivity extends AppCompatActivity {
                     Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateScore();
-                    updateQuestion();
-                    counter=100;
+                    if (mCurrentIndex < 10) {
 
+                        updateQuestion();
+                        counter=100;
+                    } else {
+                        Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        quizInt.putExtra("Score", mScore);
+                        startActivity(quizInt);
+
+                    }
 
 
                 }
@@ -167,8 +212,15 @@ public class QuizActivity extends AppCompatActivity {
                     updateScore();
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
-                    updateQuestion();
-                    counter=100;
+                    if (mCurrentIndex < 10) {
+                        updateQuestion();
+                        counter=100;
+                    } else {
+                        Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        quizInt.putExtra("Score", mScore);
+                        startActivity(quizInt);
+
+                    }
 
 
 
@@ -177,10 +229,16 @@ public class QuizActivity extends AppCompatActivity {
                     Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateScore();
-                    updateQuestion();
-                    counter=100;
+                    if (mCurrentIndex < 10) {
 
+                        updateQuestion();
+                        counter=100;
+                    } else {
+                        Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        quizInt.putExtra("Score", mScore);
+                        startActivity(quizInt);
 
+                    }
 
 
                 }
@@ -196,8 +254,6 @@ public class QuizActivity extends AppCompatActivity {
                     if (mCurrentIndex < 10) {
                         updateQuestion();
                         counter=100;
-
-
                     } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
@@ -228,7 +284,7 @@ public class QuizActivity extends AppCompatActivity {
 
         mAnswer = mQuestion.getTrueAnswer(mCurrentIndex);
         mCurrentIndex++;
-        
+
 
     }
 
