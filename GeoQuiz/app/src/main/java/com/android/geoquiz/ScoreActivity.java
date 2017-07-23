@@ -26,8 +26,11 @@ public class ScoreActivity extends AppCompatActivity {
         mScoreDisplay=(TextView) findViewById(R.id.finalscore);
         mUserDisplay=(TextView) findViewById(R.id.projectuserName);
 
-        displayUserName();
-        displayScore();
+       // displayUserName();
+
+            int score =getIntent().getIntExtra("Score", 0);
+            mScoreDisplay.setText("Your Score : " + score);
+
 
         ImageButton startButton = (ImageButton) findViewById(R.id.retryButton);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -42,10 +45,7 @@ public class ScoreActivity extends AppCompatActivity {
     }
 
 
-    private void displayScore(){
-        mScoreDisplay.setText("Your Score is : " + mQuiz.getScore());
 
-    }
 
     private void displayUserName(){
         mUserDisplay.setText("Congratulations " + mLogo.mUserName);

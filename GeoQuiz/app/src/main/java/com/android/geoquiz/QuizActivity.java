@@ -137,7 +137,9 @@ public class QuizActivity extends AppCompatActivity {
                     if (mCurrentIndex < 10) {
                         updateQuestion();
                     } else {
+
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        quizInt.putExtra("Score", mScore);
                         startActivity(quizInt);
                     }
                 }
@@ -153,10 +155,6 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
-    public int getScore(){
-        int score = mScore;
-        return score;
-    }
 
 
     private void updateQuestion() {
