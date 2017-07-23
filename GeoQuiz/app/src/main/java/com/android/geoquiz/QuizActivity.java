@@ -27,6 +27,9 @@ public class QuizActivity extends AppCompatActivity {
     private int mScore;
     private int mCurrentIndex = 0;
 
+    private boolean running;
+    private boolean isRunning;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,20 @@ public class QuizActivity extends AppCompatActivity {
         mScoreView =(TextView) findViewById(R.id.score);
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
         mTimerView = (TextView) findViewById(R.id.timer);
+
+
+        if(savedInstanceState !=null) {
+            mScoreView =(TextView) savedInstanceState.getCharSequence("mScoreView");
+            mQuestionTextView = (TextView) savedInstanceState.getCharSequence("mQuestionTextView");
+            mTimerView = (TextView) savedInstanceState.getCharSequence("mTimerView");
+            mScore = savedInstanceState.getInt("mScore");
+            running = savedInstanceState.getBoolean("running");
+            isRunning = savedInstanceState.getBoolean("isRunning");
+        }
+        if(isRunning){
+            running = true;
+        }
+
 
             Thread t = new Thread(){
                 public void run(){
@@ -68,6 +85,9 @@ public class QuizActivity extends AppCompatActivity {
 
             };
            t.start();
+
+
+
 
 
 
@@ -267,6 +287,46 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    public void onClickStart(View view){
+        running = true;
+        mScore = 0;
+    }
+
+    public void onClickStop(View view){
+        running = false;
+        mScore = this.mScore;
+    }
+
+    public void onClickReset(View view){
+        running = false;
+        counter = 1000;
+    }
+
+
+    public void onClickPause(View view){
+        running = false;
+        counter = this.counter;
+        mScore = this.mScore;
+    }
+
+    public void onClickRestart(View view){
+        running = true;
+        mQuestionTextView = (TextView) this.mQuestionTextView;
+        mTimerView = (TextView ) this.mTimerView;
+        mScoreView = (TextView) this.mScoreView;
+        mScore = this.mScore;
+    }
+
+    public void onClickResume(View view){
+        running = true;
+        counter = this.counter;
+        mQuestionTextView = (TextView) this.mQuestionTextView;
+        mTimerView = (TextView ) this.mTimerView;
+        mScoreView = (TextView) this.mScoreView;
+        mScore = this.mScore;
+    }
+
+
     private void updateScore(){
         mScoreView.setText("" + mScore);
 
@@ -285,6 +345,48 @@ public class QuizActivity extends AppCompatActivity {
         mAnswer = mQuestion.getTrueAnswer(mCurrentIndex);
         mCurrentIndex++;
 
+
+    }
+
+
+    protected void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putInt("counter", counter);
+        savedInstanceState.putInt("mScore", mScore);
+        savedInstanceState.putBoolean("running", running);
+        savedInstanceState.putBoolean("isRunning", isRunning);
+    }
+
+    protected void onStop(){
+        super.onStop();
+        isRunning = running;
+        running = false;
+    }
+
+    protected void onStart(){
+        super.onStart();
+        if(isRunning){
+            running = true;
+        }
+
+    }
+
+    protected void onReset(){
+        super.onReset();
+        isRunning = running;
+        running = false;
+    }
+
+    protected void onPause(){
+        super.onPause();
+        isRunning = running;
+        running = false;
+
+    }
+
+    protected void onRestart(){
+        super.onRestart();
+        isRunning = running;
+        running = true;
 
     }
 
