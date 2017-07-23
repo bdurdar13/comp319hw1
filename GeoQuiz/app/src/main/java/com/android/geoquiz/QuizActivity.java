@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,10 @@ public class QuizActivity extends AppCompatActivity {
     private TextView mQuestionTextView;
     private TextView mScoreView;
     private TextView mTimerView;
+    private TextView mplayTimeView;
+
     public int counter = 1000;
+    public int count = 0;
 
 
 
@@ -37,6 +41,40 @@ public class QuizActivity extends AppCompatActivity {
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
         mTimerView = (TextView) findViewById(R.id.timer);
 
+        mplayTimeView = (TextView) findViewById(R.id.gametime);
+        ///game timer
+                   Thread game = new Thread() {
+                       public void run() {
+                           while (!isInterrupted()) {
+                               try {
+                                   Thread.sleep(100); // 1 sec
+                                   runOnUiThread(new Runnable() {
+                                       @Override
+                                       public void run() {
+                                           count++;
+                                           mplayTimeView.setText(String.valueOf(count));
+
+                                       }
+                                   });
+                               } catch (InterruptedException e) {
+
+                                   e.printStackTrace();
+                               }
+                           }
+                       }
+
+                   };
+                   game.start();
+
+
+
+
+
+
+
+
+
+        //quiz timer
             Thread t = new Thread(){
                 public void run(){
                     while (!isInterrupted()){
@@ -70,7 +108,7 @@ public class QuizActivity extends AppCompatActivity {
            t.start();
 
 
-
+////buttons
         mAButton = (Button) findViewById(R.id.a_button);
         mAButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,7 +233,6 @@ public class QuizActivity extends AppCompatActivity {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
                         startActivity(quizInt);
-
                     }
 
 

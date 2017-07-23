@@ -11,11 +11,10 @@ import android.widget.TextView;
 public class ScoreActivity extends AppCompatActivity {
 
 
-    private QuizActivity mQuiz = new QuizActivity();
-    private LogoActivity mLogo = new LogoActivity();
 
     private TextView mScoreDisplay;
     private TextView mUserDisplay;
+    private TextView mplayTimeDisplay;
 
 
     @Override
@@ -25,17 +24,22 @@ public class ScoreActivity extends AppCompatActivity {
 
         mScoreDisplay=(TextView) findViewById(R.id.finalscore);
         mUserDisplay=(TextView) findViewById(R.id.projectuserName);
+        mplayTimeDisplay=(TextView) findViewById(R.id.playTime);
 
 
         int name =getIntent().getIntExtra("Name", 0);
-        mUserDisplay.setText("Conguragilations : " + name);
+       // mUserDisplay.setText(" Congratulations! " + name);
+        mUserDisplay.setText(" Congratulations! ");
 
-            int score =getIntent().getIntExtra("Score", 0);
+
+        int score =getIntent().getIntExtra("Score", 0);
             mScoreDisplay.setText("Your Score : " + score);
 
+        int playTime =getIntent().getIntExtra("PlayTime", 0);
+        mplayTimeDisplay.setText("Your total play time is : " + playTime);
 
-        ImageButton startButton = (ImageButton) findViewById(R.id.retryButton);
-        startButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton retryButton = (ImageButton) findViewById(R.id.retryButton);
+        retryButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
