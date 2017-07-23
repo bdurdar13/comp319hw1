@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,9 +8,21 @@
     android:orientation="vertical"
     android:weightSum="1">
 
+
+        <TextView
+        android:id="@+id/score"
+            android:layout_marginLeft="150dp"
+            android:layout_marginBottom="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_weight="0.1"
+        android:padding="5dip"
+        android:text="Symbol" />
+
     <Chronometer
         android:id="@+id/chronometer3"
-        android:layout_width="144dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:textSize="50dp" />
 
@@ -72,5 +86,5 @@
         android:text="@string/next_button"
         android:drawableRight="@drawable/arrow_right"
         android:drawablePadding="4dp"/>
-
 </LinearLayout>
+

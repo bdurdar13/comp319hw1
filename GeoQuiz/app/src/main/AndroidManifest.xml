@@ -25,6 +25,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ScoreActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
