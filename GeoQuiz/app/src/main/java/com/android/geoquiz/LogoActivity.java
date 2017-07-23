@@ -5,13 +5,29 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class LogoActivity extends AppCompatActivity {
+
+    String mUserName;
+    private EditText mUserView;
+    private TextView mUserTextView;
+
+    private Button nextButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
+
+        mUserView =(EditText) findViewById(R.id.userText);
+        mUserTextView =(TextView) findViewById(R.id.userTextView);
+
+        nextButton = (Button) findViewById(R.id.next_button);
+
+
 
         // TODO Have only one class to handle the questions
         Button logoButton = (Button) findViewById(R.id.next_button);
@@ -23,5 +39,17 @@ public class LogoActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    public void onClick(View view){
+        if (view.getId() == nextButton.getId()){
+            mUserName = mUserView.getText().toString();
+            mUserTextView.setText(mUserName);
+        }
+
+    }
+
+
+
 }
 

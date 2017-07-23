@@ -21,7 +21,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView mScoreView;
 
     private String mAnswer;
-    private int mScore = 0;
+    private int mScore;
     private int mCurrentIndex = 0;
 
     @Override
@@ -43,11 +43,15 @@ public class QuizActivity extends AppCompatActivity {
                     updateScore();
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
+                    updateQuestion();
+
                 } else {
                     mScore = mScore - 20;
                     Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateScore();
+                    updateQuestion();
+
 
                 }
             }
@@ -63,11 +67,15 @@ public class QuizActivity extends AppCompatActivity {
                     updateScore();
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
+                    updateQuestion();
+
                 } else {
                     mScore = mScore - 20;
                     Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateScore();
+                    updateQuestion();
+
 
                 }
             }
@@ -83,11 +91,15 @@ public class QuizActivity extends AppCompatActivity {
                     updateScore();
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
+                    updateQuestion();
+
                 } else {
                     mScore = mScore - 20;
                     Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateScore();
+                    updateQuestion();
+
 
                 }
             }
@@ -102,38 +114,36 @@ public class QuizActivity extends AppCompatActivity {
                     updateScore();
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
+                    updateQuestion();
+
                 } else {
                     mScore = mScore - 20;
                     Toast.makeText(QuizActivity.this, "INCORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateScore();
+                    updateQuestion();
+
 
                 }
             }
         });
 
-        if(mCurrentIndex<10) {
+
+
             mNextButton = (Button) findViewById(R.id.next_button);
             mNextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    updateQuestion();
-
+                    if (mCurrentIndex < 10) {
+                        updateQuestion();
+                    } else {
+                        Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
+                        startActivity(quizInt);
+                    }
                 }
             });
-        }else {
-            Button finalNext = (Button) findViewById(R.id.next_button);
-            finalNext.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View view) {
 
-                    Intent startInt = new Intent(QuizActivity.this, ScoreActivity.class);
-                    startActivity(startInt);
-                }
-
-            });
-        }
 
     }
 
@@ -142,6 +152,13 @@ public class QuizActivity extends AppCompatActivity {
 
 
     }
+
+    public int getScore(){
+        int score = mScore;
+        return score;
+    }
+
+
     private void updateQuestion() {
         mQuestionTextView.setText(mQuestion.getQuestions(mCurrentIndex));
         mAButton.setText(mQuestion.getChoicea(mCurrentIndex));
