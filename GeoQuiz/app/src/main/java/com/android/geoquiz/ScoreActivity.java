@@ -26,7 +26,9 @@ public class ScoreActivity extends AppCompatActivity {
         mScoreDisplay=(TextView) findViewById(R.id.finalscore);
         mUserDisplay=(TextView) findViewById(R.id.projectuserName);
 
-       // displayUserName();
+
+        int name =getIntent().getIntExtra("Name", 0);
+        mUserDisplay.setText("Conguragilations : " + name);
 
             int score =getIntent().getIntExtra("Score", 0);
             mScoreDisplay.setText("Your Score : " + score);
@@ -44,12 +46,6 @@ public class ScoreActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-    private void displayUserName(){
-        mUserDisplay.setText("Congratulations " + mLogo.mUserName);
-    }
 
 
 }

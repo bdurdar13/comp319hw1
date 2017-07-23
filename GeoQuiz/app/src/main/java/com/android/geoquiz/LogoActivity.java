@@ -35,18 +35,12 @@ public class LogoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent logoInt = new Intent(LogoActivity.this, StartActivity.class);
+                Intent nameInt = new Intent(LogoActivity.this, ScoreActivity.class);
+                nameInt.putExtra("name", mUserName);
+                startActivity(nameInt);
                 startActivity(logoInt);
             }
         });
-    }
-
-
-    public void onClick(View view){
-        if (view.getId() == nextButton.getId()){
-            mUserName = mUserView.getText().toString();
-            mUserTextView.setText(mUserName);
-        }
-
     }
 
 

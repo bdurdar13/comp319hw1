@@ -2,6 +2,8 @@ package com.android.geoquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,10 @@ public class QuizActivity extends AppCompatActivity {
     private Button mNextButton;
     private TextView mQuestionTextView;
     private TextView mScoreView;
+    private TextView mTimerView;
+    public int counter = 100;
+
+
 
     private String mAnswer;
     private int mScore;
@@ -32,6 +38,37 @@ public class QuizActivity extends AppCompatActivity {
 
         mScoreView =(TextView) findViewById(R.id.score);
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
+        mTimerView = (TextView) findViewById(R.id.timer);
+
+            Thread t = new Thread(){
+                public void run(){
+                    while (!isInterrupted()){
+                        try {
+                            Thread.sleep(100); // 1 sec
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (counter > 0){
+                                    counter--;
+                                    mTimerView.setText(String.valueOf(counter));
+                                }else{
+                                     updateQuestion();
+                                      counter=100;
+                                    }
+
+                                }
+                            });
+
+                        } catch (InterruptedException e){
+
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+            };
+           t.start();
+
 
 
         mAButton = (Button) findViewById(R.id.a_button);
@@ -44,6 +81,9 @@ public class QuizActivity extends AppCompatActivity {
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateQuestion();
+                    counter=100;
+
+
 
                 } else {
                     mScore = mScore - 20;
@@ -51,6 +91,9 @@ public class QuizActivity extends AppCompatActivity {
                             .show();
                     updateScore();
                     updateQuestion();
+                    counter=100;
+
+
 
 
                 }
@@ -68,6 +111,8 @@ public class QuizActivity extends AppCompatActivity {
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateQuestion();
+                    counter=100;
+
 
                 } else {
                     mScore = mScore - 20;
@@ -75,6 +120,9 @@ public class QuizActivity extends AppCompatActivity {
                             .show();
                     updateScore();
                     updateQuestion();
+                    counter=100;
+
+
 
 
                 }
@@ -92,6 +140,9 @@ public class QuizActivity extends AppCompatActivity {
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateQuestion();
+                    counter=100;
+
+
 
                 } else {
                     mScore = mScore - 20;
@@ -99,6 +150,8 @@ public class QuizActivity extends AppCompatActivity {
                             .show();
                     updateScore();
                     updateQuestion();
+                    counter=100;
+
 
 
                 }
@@ -115,6 +168,9 @@ public class QuizActivity extends AppCompatActivity {
                     Toast.makeText(QuizActivity.this, "CORRECT!", Toast.LENGTH_LONG)
                             .show();
                     updateQuestion();
+                    counter=100;
+
+
 
                 } else {
                     mScore = mScore - 20;
@@ -122,6 +178,9 @@ public class QuizActivity extends AppCompatActivity {
                             .show();
                     updateScore();
                     updateQuestion();
+                    counter=100;
+
+
 
 
                 }
@@ -136,11 +195,14 @@ public class QuizActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (mCurrentIndex < 10) {
                         updateQuestion();
-                    } else {
+                        counter=100;
 
+
+                    } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
                         startActivity(quizInt);
+
                     }
                 }
             });
@@ -156,8 +218,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-
     private void updateQuestion() {
+
         mQuestionTextView.setText(mQuestion.getQuestions(mCurrentIndex));
         mAButton.setText(mQuestion.getChoicea(mCurrentIndex));
         mBButton.setText(mQuestion.getChoiceb(mCurrentIndex));
@@ -166,6 +228,7 @@ public class QuizActivity extends AppCompatActivity {
 
         mAnswer = mQuestion.getTrueAnswer(mCurrentIndex);
         mCurrentIndex++;
+        
 
     }
 
