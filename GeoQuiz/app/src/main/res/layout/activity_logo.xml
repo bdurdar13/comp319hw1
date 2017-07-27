@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="213dp"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
         android:layout_weight="0.39"
         android:paddingBottom="30dp"
         app:srcCompat="@drawable/logo" />
@@ -26,15 +26,6 @@
         android:textColor="@color/DimGray"
         android:text=" " />
 
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        android:orientation="horizontal">
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/next_button"

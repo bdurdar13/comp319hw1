@@ -11,20 +11,15 @@ public class LogoActivity extends AppCompatActivity {
 
     String mUserName;
     private EditText mUserView;
-
     private Button nextButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
 
-        mUserView =(EditText) findViewById(R.id.userText);
-
+        mUserView = (EditText) findViewById(R.id.userText);
         nextButton = (Button) findViewById(R.id.next_button);
-
-
 
         // TODO Have only one class to handle the questions
         Button logoButton = (Button) findViewById(R.id.next_button);
@@ -32,9 +27,6 @@ public class LogoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent logoInt = new Intent(LogoActivity.this, StartActivity.class);
-                Intent nameInt = new Intent(LogoActivity.this, ScoreActivity.class);
-                nameInt.putExtra("name", mUserName);
-                startActivity(nameInt);
                 startActivity(logoInt);
             }
         });
