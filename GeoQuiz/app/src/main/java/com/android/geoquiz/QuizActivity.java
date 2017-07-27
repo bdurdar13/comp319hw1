@@ -17,9 +17,12 @@ public class QuizActivity extends AppCompatActivity {
     private Button mDButton;
     private Button mNextButton;
     private TextView mQuestionTextView;
+    private TextView mCountView;
+
     private TextView mScoreView;
     private TextView mTimerView;
     public int counter = 100;
+    public int count ;
 
     private String mAnswer;
     private int mScore;
@@ -39,6 +42,7 @@ public class QuizActivity extends AppCompatActivity {
         mScoreView = (TextView) findViewById(R.id.score);
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
         mTimerView = (TextView) findViewById(R.id.timer);
+        mCountView = (TextView) findViewById(R.id.gamecount);
 
 
 
@@ -56,6 +60,32 @@ public class QuizActivity extends AppCompatActivity {
         if (isRunning) {
             running = true;
         }
+
+
+        Thread mainThread = new Thread() {
+            public void run() {
+                count = 0;
+                while (!isInterrupted()) {
+                    try {
+                        Thread.sleep(100); // 1 sec
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                count++;
+                                mCountView.setText(String.valueOf(count));
+                            }
+
+                        });
+
+                    } catch (InterruptedException e) {
+
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        mainThread.start();
+
 
         Thread t = new Thread() {
             public void run() {
@@ -106,6 +136,8 @@ public class QuizActivity extends AppCompatActivity {
                     } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
+                        quizInt.putExtra("GameTime", count);
+
                         startActivity(quizInt);
 
                     }
@@ -123,6 +155,8 @@ public class QuizActivity extends AppCompatActivity {
                     } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
+                        quizInt.putExtra("GameTime", count);
+
                         startActivity(quizInt);
 
                     }
@@ -149,6 +183,8 @@ public class QuizActivity extends AppCompatActivity {
                     } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
+                        quizInt.putExtra("GameTime", count);
+
                         startActivity(quizInt);
 
                     }
@@ -166,6 +202,8 @@ public class QuizActivity extends AppCompatActivity {
                     } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
+                        quizInt.putExtra("GameTime", count);
+
                         startActivity(quizInt);
 
                     }
@@ -192,6 +230,8 @@ public class QuizActivity extends AppCompatActivity {
                     } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
+                        quizInt.putExtra("GameTime", count);
+
                         startActivity(quizInt);
 
                     }
@@ -209,6 +249,8 @@ public class QuizActivity extends AppCompatActivity {
                     } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
+                        quizInt.putExtra("GameTime", count);
+
                         startActivity(quizInt);
 
                     }
@@ -233,6 +275,8 @@ public class QuizActivity extends AppCompatActivity {
                     } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
+                        quizInt.putExtra("GameTime", count);
+
                         startActivity(quizInt);
 
                     }
@@ -250,6 +294,8 @@ public class QuizActivity extends AppCompatActivity {
                     } else {
                         Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                         quizInt.putExtra("Score", mScore);
+                        quizInt.putExtra("GameTime", count);
+
                         startActivity(quizInt);
 
                     }
@@ -268,6 +314,8 @@ public class QuizActivity extends AppCompatActivity {
                 } else {
                     Intent quizInt = new Intent(QuizActivity.this, ScoreActivity.class);
                     quizInt.putExtra("Score", mScore);
+                    quizInt.putExtra("GameTime", count);
+
                     startActivity(quizInt);
 
                 }
@@ -280,6 +328,8 @@ public class QuizActivity extends AppCompatActivity {
 
             isFirstQuestion = false;
         }
+
+
 
     }
 

@@ -35,7 +35,7 @@ public class ScoreActivity extends AppCompatActivity {
         int score =getIntent().getIntExtra("Score", 0);
             mScoreDisplay.setText("Your Score : " + score);
 
-        int playTime =getIntent().getIntExtra("PlayTime", 0);
+        int playTime =getIntent().getIntExtra("GameTime", 0);
         mplayTimeDisplay.setText("Your total play time is : " + playTime);
 
         ImageButton retryButton = (ImageButton) findViewById(R.id.retryButton);

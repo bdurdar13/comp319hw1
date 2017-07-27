@@ -12,10 +12,10 @@
 
     <TextView
         android:id="@+id/score"
-        android:layout_width="67dp"
+        android:layout_width="36dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_marginLeft="150dp"
+        android:layout_marginTop="15dp"
         android:gravity="right"
         android:padding="5dip" />
 
@@ -24,9 +24,9 @@
         android:layout_width="56dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-
         android:layout_marginBottom="10dp"
+
+        android:layout_marginTop="10dp"
         android:textSize="30dp" />
 
 
@@ -39,6 +39,17 @@
         android:padding="25dp"
         android:textColor="@color/DimGray" />
 
+
+    <TextView
+        android:id="@+id/gamecount"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+
+        android:layout_marginTop="10dp"
+        android:textSize="30dp"
+        android:layout_weight="0.40" />
 
     <LinearLayout
         android:layout_width="400dp"
@@ -102,13 +113,6 @@
         android:drawableRight="@drawable/arrow_right"
         android:drawablePadding="4dp"/>
 
-    <TextView
-        android:id="@+id/gametime"
-        android:layout_width="21dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="150dp"
-        android:gravity="left"
-        android:padding="5dip" />
+
 </LinearLayout>
 
